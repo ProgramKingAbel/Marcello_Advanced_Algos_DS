@@ -1,5 +1,5 @@
 from typing import Union
-from core import Array
+from .core import Array
 
 class UnsortedArray:
     def __init__(self, max_size, typecode = '1'):
