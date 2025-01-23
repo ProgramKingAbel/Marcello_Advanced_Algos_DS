@@ -32,7 +32,7 @@ class UnsortedArray:
             Union[int, float]: The value at the given index
         '''
 
-        if index < 0 or index > len(self._size):
+        if index < 0 or index > self._size:
             raise ValueError(f'index {index} is out of bound')
         return self._array[index]
 
