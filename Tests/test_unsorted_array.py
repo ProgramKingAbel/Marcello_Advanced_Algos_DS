@@ -26,3 +26,21 @@ class TestArray(unittest.TestCase):
         array.insert(2)
         self.assertEqual(array[0], 1)
         self.assertEqual(array[1], 2)
+    # max_size
+    def test_max_size(self):
+        array = UnsortedArray(3, 'i')
+        self.assertEqual(array.max_size(), 3)
+        array.insert(2)
+        self.assertEqual(array.max_size(), 3)
+        array = UnsortedArray(6, 'f')
+        self.assertEqual(array.max_size(), 6)
+
+
+        # __insert__
+
+    def test_insert_valid(self):
+        """Test inserting into an array with space"""
+        array = UnsortedArray(5)
+        array.insert(1)
+        self.assertEqual(len(array), 1)
+        self.assertEqual(array[0], 1)
