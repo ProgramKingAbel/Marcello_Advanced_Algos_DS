@@ -91,3 +91,76 @@ class TestArray(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             array.delete(-1)
+
+    def test_find_present(self):
+        """Test finding an entry that is present in the array"""
+        array = UnsortedArray(7)
+        array.insert(10)
+        array.insert(-2)
+        array.insert(5)
+
+        self.assertEqual(array.find(-2), 1)
+        self.assertEqual(array.find(5), 2)
+        self.assertEqual(array.find(10), 0)
+
+    def test_find_absent(self):
+        """Test finding an entry that is absent from the array"""
+        array = UnsortedArray(5)
+        array.insert(7)
+        array.insert(5)
+        array.insert(48)
+
+        index = array.find(81)
+
+        self.assertEqual(index, None)
+
+    def test_traverses_entire_array(self):
+        result = []
+
+        def test_callback(i: int):
+            result.append(i + 1)
+
+        array = UnsortedArray(5)
+        array.insert(3)
+        array.insert(4)
+        array.insert(5)
+
+        array.traverse(test_callback)
+        self.assertEqual(result, [4, 5, 6])
+
+    def test_get_minimum_value(self):
+        """Test getting the minimum value in the array"""
+        array = UnsortedArray(3)
+
+        array.insert(8)
+        array.insert(9)
+        array.insert(10)
+
+        self.assertEqual(array.min_in_array(), (8, 0))
+
+    def test_get_minimum_value_negatives(self):
+        array = UnsortedArray(3)
+
+        array.insert(-8)
+        array.insert(-9)
+        array.insert(-10)
+
+        self.assertEqual(array.min_in_array(), (-10, 2))
+
+    def test_get_maximum_value(self):
+        array = UnsortedArray(3)
+
+        array.insert(8)
+        array.insert(9)
+        array.insert(10)
+
+        self.assertEqual(array.max_in_array(), (10, 2))
+
+    def test_get_maximum_minimum_value(self):
+        array = UnsortedArray(3)
+
+        array.insert(8)
+        array.insert(9)
+        array.insert(10)
+
+        self.assertEqual(array.max_min_in_arr(), (10, 8))
