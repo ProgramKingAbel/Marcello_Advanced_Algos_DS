@@ -86,7 +86,7 @@ class UnsortedArray:
 
         if self._size == 0:
             raise ValueError('Delete from an Empty Array')
-        elif index < 0 or index > self._size:
+        elif index < 0 or index >= self._size:
             raise ValueError(f'Index {index} out of range.')
         else:
             self._array[index] = self._array[self._size - 1]

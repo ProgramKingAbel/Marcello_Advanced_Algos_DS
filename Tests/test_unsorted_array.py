@@ -44,3 +44,50 @@ class TestArray(unittest.TestCase):
         array.insert(1)
         self.assertEqual(len(array), 1)
         self.assertEqual(array[0], 1)
+
+    def test_insert_in_full_array(self):
+        """Test insert into a full array"""
+        array = UnsortedArray(1)
+        array.insert(1)
+        with self.assertRaises(ValueError):
+            array.insert(2)
+
+    # delete
+
+    def test_delete_valid(self):
+        """Test deleting from an array with elements"""
+        array = UnsortedArray(5)
+        array.insert(1)
+        array.insert(2)
+        array.insert(3)
+        array.insert(4)
+        array.delete(1)
+
+        self.assertEqual(len(array), 3)
+        self.assertEqual(array[1], 4)
+        array.delete(2)
+        self.assertEqual(len(array), 2)
+        self.assertEqual(array[0], 1)
+        self.assertEqual(array[1], 4)
+        array.delete(0)
+        self.assertEqual(len(array), 1)
+        self.assertEqual(array[0], 4)
+        array.delete(0)
+        self.assertEqual(len(array), 0)
+
+    def test_delete_invalid_empty(self):
+        """Test deleting from an empty array"""
+        array = UnsortedArray(3)
+        with self.assertRaises(ValueError):
+            array.delete(0)
+
+    def test_delete_invalid_index(self):
+        """Test deleting with invalid index"""
+        array = UnsortedArray(5)
+        array.insert(1)
+
+        with self.assertRaises(ValueError):
+            array.delete(1)
+
+        with self.assertRaises(ValueError):
+            array.delete(-1)
