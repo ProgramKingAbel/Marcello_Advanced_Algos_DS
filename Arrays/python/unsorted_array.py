@@ -169,7 +169,7 @@ class UnsortedArray:
 
         Returns:
             tuple[Union[int, float], Union[int, float]]:
-                min(int of float): The minimum value in the array
+                min(int or float): The minimum value in the array
                 max(int or float): The maximum value in the array
         '''
         min_value_index = 0
